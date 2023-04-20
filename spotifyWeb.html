@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Give Me A Song!</title>
+    <link rel="shortcut icon" type="image/jpg" href="spotifyLogo.png"/>
+    <style>
+    body {
+      background-image: url('gradient.png');
+    }
+    </style>
+  </head>
+
+  <body>
+  <!--First section-->
+  <div style="vbackground-size: cover; height:480px; padding-top:80px; text-align: center;">
+  <!-- <h1 style="font-size:100px; color:white; margin:10px;">Heading</h1> -->
+  <!-- <p style="font-size:30px; color: white;"><em>Subtitle</em></p> -->
+  <!-- <a href="about.html">About this site</a> -->
+  <!-- </div> -->
+
+
+
+  <!--Second section-->
+  <div style="height:500px; margin:100px;">
+  <h1 align="center" style="font-family:helvetica">Tired of your current playlist?</h1>
+
+  <!-- <input type="url" name="url" id="url"
+       placeholder="Paste a link to your favorite Spotify song here"
+       pattern="https://.*" size="70"
+       required> -->
+
+      <form>
+      <input size="70" type="text" id="userString" name="userString" placeholder="Paste a link to your favorite Spotify song here"><br><br>
+      <input type="button" value="Submit" onclick="displayString()">
+      </form>
+      <div id="output"></div>
+      <script>
+      function displayString() {
+      var inputString = document.getElementById("userString").value;
+      localStorage.setItem("userString", inputString);
+      window.location.href = "recs.html";
+      }
+      </script>
+
+  <a href="info.html" style = "color: white"><br><br>Can’t find the link for the song?</a>
+  </div>
+
+  <!--Footer section-->
+  <footer>
+  <a align="center" href="about.html" style = "color: white">About the Project</a>
+  <p> </p>
+  </footer>
+
+
+  </body>
+</html>
