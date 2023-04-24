@@ -62,10 +62,8 @@ def recommendSong(songs): #returns a list of song ID's to be presented to User
     if(len(curr) > 5): #CASE B List is greater than 5, set old to current version of list and then requery with next feature
       #update old to curr
       old is curr
-      #move onto next song feature
-      song_feat += 1
       #resets query value to 0.15 if changed
-      query_value = 0.10
+      query_value -= 0.01
       #reset loop to query
       continue
 
@@ -74,31 +72,10 @@ def recommendSong(songs): #returns a list of song ID's to be presented to User
       #update curr to old list
       curr is old
       #increase query value by 0.03
-      query_value += 0.03
+      query_value += 0.01
       #reset loop to query with new value
       continue
 
-    #if length of list is less than 5 & feature < 8
-    if( (len(curr) < 5) and (song_feat < 8)): #CASE D List is less than 5, resets curr to old version and moves onto the next feature to try process again
-      #update curr to old list
-      curr is old
-      #reset query value to 0.1
-      query_value - 0.1
-      #moves onto next feature
-      song_feat += 1
-      #reset loop to query with next feature
-      continue
-    
-    #if length of list is less than 5.
-    if(len(curr) < 5): #CASE E (worst case), resets to older version and takes the first 5 of older version
-      #clears curr list
-      curr.clear()
-      #update curr to old list
-      #pick first 5 songs in old list
-      for i in range(0, 5):
-        curr[i] = old[i]
-      #break
-      break
 
   #return CURR
   return curr
