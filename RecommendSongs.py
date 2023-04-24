@@ -5,7 +5,7 @@ db_ops = db_operations("SongData.db")
 
 def recommendSong(songs): #returns a list of song ID's to be presented to User  
   #set query values
-  query_value = 0.10
+  query_value = 0.15
   song_feat = 0
   features = ["energy","danceability","valence","loudness","tempo","instrumentals","speechiness","acousticness"]
   curr_list = []
@@ -59,7 +59,7 @@ def recommendSong(songs): #returns a list of song ID's to be presented to User
       break
 
     #if length of curr is greater than 5
-    if(len(curr) > 5): #CASE B List is greater than 5, set old to current version of list and then requery with next feature
+    if((len(curr) > 5) and (query_value > 0.05)): #CASE B List is greater than 5, set old to current version of list and then requery with next feature
       #update old to curr
       old is curr
       #resets query value to 0.15 if changed
@@ -75,7 +75,13 @@ def recommendSong(songs): #returns a list of song ID's to be presented to User
       query_value += 0.01
       #reset loop to query with new value
       continue
-
+    
+    if(len(curr) > 5):
+      old is curr
+      for i in range(5):
+        temp[i] = curr[i]
+        curr is temp
+      continue
 
   #return CURR
   return curr
