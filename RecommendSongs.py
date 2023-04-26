@@ -46,3 +46,7 @@ while 1:
 
     return(curr)
 
+def RecommendRandomly()
+  #Query for 5 Rand Songs
+  rand = query
+  #Return Songs
