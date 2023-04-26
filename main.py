@@ -172,6 +172,8 @@ def Menu():
         elif(option == "3"):
             song = GetSongInfo()
             recommendation = Recommend_Song(song)
+            for i in range(len(recommendation))
+                print(recommendation[i])
             #Print out all of the artist and name of song to the interface
                 
         elif(option == "5"):
