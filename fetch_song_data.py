@@ -23,9 +23,6 @@ import warnings
 warnings.filterwarnings('ignore')
 import requests
 
-import spotipy
-from spotipy.oauth2 import SpotifyClientCredentials
-
 from fastai.collab import *
 from fastai.tabular import *
 import pandas as pd
@@ -34,10 +31,8 @@ import spotipy
 import spotipy.util as util
 from spotipy.oauth2 import SpotifyClientCredentials
 import spotipy.oauth2 as oauth2
-import requests
 
 from database import db_operations
-import re
 
 db_ops = db_operations("SongData.db")
 
@@ -94,3 +89,8 @@ def insertSong():
         db_ops.execute_one(query)
     else:
         print("song already in db")
+
+# Start of Main Function begin testing down here
+
+song = GetSongInfo()
+print(song)
