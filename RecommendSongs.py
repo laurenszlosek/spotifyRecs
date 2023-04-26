@@ -47,5 +47,5 @@ while 1:
     elif len(curr) < 6:
         query_value +=0.01
 
-    print(curr)
+    return(curr)
 
