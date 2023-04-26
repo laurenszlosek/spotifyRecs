@@ -3,9 +3,6 @@ from database import db_operations
 
 db_ops = db_operations("SongData.db")
 
-def main(): #main function to run the Recommendation Algorithm
-  input_song = [] #list of song's information
-  recommendations = recommendSong(input_song)
 
 def newRecommendation():
   query_value = 0.05
@@ -49,3 +46,6 @@ while 1:
 
     return(curr)
 
+def main(): #main function to run the Recommendation Algorithm
+  input_song = [] #list of song's information
+  recommendations = recommendSong(input_song)
