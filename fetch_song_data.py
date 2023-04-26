@@ -73,10 +73,27 @@ def GetSongInfo():
     name = name.replace('\'', 'º')
     artist = artist.replace('\'', 'º')
 
-    song_info = [track_link, song_id, danceability, energy, loudness, speechiness, acousticness, liveness, valence, tempo, Instrumentalness]
+    song_info = [track_link, name, artist, song_id, danceability, energy, loudness, speechiness, acousticness, liveness, valence, tempo, Instrumentalness, key, mode]
     return song_info
 
-def insertSong():
+def insertSong(song):
+
+    track_link = song[0]
+    name = song[1]
+    artist = song[2]
+    song_id = song[3]
+    danceability = song[4]
+    energy = song[5]
+    loudness = song[6]
+    speechiness = song[7]
+    acousticness = song[8]
+    liveness = song[9]
+    valence = song[10]
+    tempo = song[11]
+    Instrumentalness = song[12]
+    key = song[13]
+    mode = song[14]
+
     query = '''
     SELECT *
     FROM Song_Data
@@ -94,3 +111,4 @@ def insertSong():
 
 song = GetSongInfo()
 print(song)
+insertSong(song)
