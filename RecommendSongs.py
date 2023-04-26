@@ -46,6 +46,3 @@ while 1:
 
     return(curr)
 
-def main(): #main function to run the Recommendation Algorithm
-  input_song = [] #list of song's information
-  recommendations = recommendSong(input_song)
