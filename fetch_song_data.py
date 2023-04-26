@@ -51,50 +51,46 @@ redirect_uri='http://localhost:8080/callback/'
 client_credentials_manager = SpotifyClientCredentials(client_id=CLIENT_ID, client_secret=CLIENT_SECRET)
 sp = spotipy.Spotify(client_credentials_manager = client_credentials_manager)
 
-track_link = input("Put your track link in here: ")
+def GetSongInfo():
+    track_link = input("Put your track link in here: ")
 
-track_URI = track_link.split("/")[-1].split("?")[0] #Also known as the Song ID
+    track_URI = track_link.split("/")[-1].split("?")[0] #Also known as the Song ID
 
-track_info = sp.track(track_URI) #Creates a list of All of the Song Information
-name = track_info['name'] 
-artist = track_info['album']['artists'][0]['name']
+    track_info = sp.track(track_URI) #Creates a list of All of the Song Information
+    name = track_info['name'] 
+    artist = track_info['album']['artists'][0]['name']
 
-track_audio = sp.audio_features(track_URI)[0]
+    track_audio = sp.audio_features(track_URI)[0]
 
-song_id = track_audio["id"]
-danceability = str(track_audio["danceability"])
-energy = str(track_audio["energy"])
-key = str(track_audio["key"])
-loudness = str(track_audio["loudness"])
-mode = str(track_audio["mode"])
-speechiness = str(track_audio["speechiness"])
-acousticness = str(track_audio["acousticness"])
-liveness = str(track_audio['liveness'])
-valence = str(track_audio['valence'])
-tempo = str(track_audio['tempo'])
-Instrumentalness = str(track_audio['instrumentalness'])
+    song_id = track_audio["id"]
+    danceability = str(track_audio["danceability"])
+    energy = str(track_audio["energy"])
+    key = str(track_audio["key"])
+    loudness = str(track_audio["loudness"])
+    mode = str(track_audio["mode"])
+    speechiness = str(track_audio["speechiness"])
+    acousticness = str(track_audio["acousticness"])
+    liveness = str(track_audio['liveness'])
+    valence = str(track_audio['valence'])
+    tempo = str(track_audio['tempo'])
+    Instrumentalness = str(track_audio['instrumentalness'])
 
-name = name.replace('\'', 'º')
-artist = artist.replace('\'', 'º')
+    name = name.replace('\'', 'º')
+    artist = artist.replace('\'', 'º')
 
-query = '''
-SELECT *
-FROM Song_Data
-WHERE SongID = \''''+song_id+"\';"
+    song_info = [track_link, song_id, danceability, energy, loudness, speechiness, acousticness, liveness, valence, tempo, Instrumentalness]
+    return song_info
 
-test = db_ops.execute_one(query)
+def insertSong():
+    query = '''
+    SELECT *
+    FROM Song_Data
+    WHERE SongID = \''''+song_id+"\';"
 
-if not test:
-    query = "INSERT INTO Song_Data VALUES(\'"+song_id+"\', \'"+name+"\', \'"+artist+"\', "+danceability+", "+energy+","+key+","+loudness+","+mode+","+speechiness+","+acousticness+","+Instrumentalness+","+liveness+","+valence+","+tempo+",\'"+track_link+"\');"
-    db_ops.execute_one(query)
-else:
-    print("song already in db")
+    test = db_ops.execute_one(query)
 
-danceability = track_audio["danceability"]
-energy = track_audio["energy"]
-#loudness = str(track_audio["loudness"])
-speechiness = track_audio["speechiness"]
-acousticness = track_audio["acousticness"]
-valence = track_audio['valence']
-#tempo = str(track_audio['tempo'])
-Instrumentalness = track_audio['instrumentalness']
+    if not test:
+        query = "INSERT INTO Song_Data VALUES(\'"+song_id+"\', \'"+name+"\', \'"+artist+"\', "+danceability+", "+energy+","+key+","+loudness+","+mode+","+speechiness+","+acousticness+","+Instrumentalness+","+liveness+","+valence+","+tempo+",\'"+track_link+"\');"
+        db_ops.execute_one(query)
+    else:
+        print("song already in db")
