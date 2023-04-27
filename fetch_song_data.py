@@ -23,9 +23,6 @@ import warnings
 warnings.filterwarnings('ignore')
 import requests
 
-import spotipy
-from spotipy.oauth2 import SpotifyClientCredentials
-
 from fastai.collab import *
 from fastai.tabular import *
 import pandas as pd
@@ -34,10 +31,8 @@ import spotipy
 import spotipy.util as util
 from spotipy.oauth2 import SpotifyClientCredentials
 import spotipy.oauth2 as oauth2
-import requests
 
 from database import db_operations
-import re
 
 db_ops = db_operations("SongData.db")
 
@@ -51,28 +46,69 @@ redirect_uri='http://localhost:8080/callback/'
 client_credentials_manager = SpotifyClientCredentials(client_id=CLIENT_ID, client_secret=CLIENT_SECRET)
 sp = spotipy.Spotify(client_credentials_manager = client_credentials_manager)
 
-track_link = input("Put your track link in here: ")
+def GetSongInfo():
+    track_link = input("Put your track link in here: ")
 
-track_URI = track_link.split("/")[-1].split("?")[0] #Also known as the Song ID
+    track_URI = track_link.split("/")[-1].split("?")[0] #Also known as the Song ID
 
-track_info = sp.track(track_URI) #Creates a list of All of the Song Information
-name = track_info['name'] 
-artist = track_info['album']['artists'][0]['name']
+    track_info = sp.track(track_URI) #Creates a list of All of the Song Information
+    name = track_info['name'] 
+    artist = track_info['album']['artists'][0]['name']
 
-track_audio = sp.audio_features(track_URI)[0]
+    track_audio = sp.audio_features(track_URI)[0]
 
-song_id = track_audio["id"]
-danceability = str(track_audio["danceability"])
-energy = str(track_audio["energy"])
-key = str(track_audio["key"])
-loudness = str(track_audio["loudness"])
-mode = str(track_audio["mode"])
-speechiness = str(track_audio["speechiness"])
-acousticness = str(track_audio["acousticness"])
-liveness = str(track_audio['liveness'])
-valence = str(track_audio['valence'])
-tempo = str(track_audio['tempo'])
-Instrumentalness = str(track_audio['instrumentalness'])
+    song_id = track_audio["id"]
+    danceability = str(track_audio["danceability"])
+    energy = str(track_audio["energy"])
+    key = str(track_audio["key"])
+    loudness = str(track_audio["loudness"])
+    mode = str(track_audio["mode"])
+    speechiness = str(track_audio["speechiness"])
+    acousticness = str(track_audio["acousticness"])
+    liveness = str(track_audio['liveness'])
+    valence = str(track_audio['valence'])
+    tempo = str(track_audio['tempo'])
+    Instrumentalness = str(track_audio['instrumentalness'])
 
-query = "INSERT INTO Song_Data VALUES(\'"+song_id+"\', \'"+name+"\', \'"+artist+"\', "+danceability+", "+energy+","+key+","+loudness+","+mode+","+speechiness+","+acousticness+","+Instrumentalness+","+liveness+","+valence+","+tempo+",\'"+track_link+"\');"
-db_ops.execute_one(query)
+    name = name.replace('\'', 'º')
+    artist = artist.replace('\'', 'º')
+
+    song_info = [track_link, name, artist, song_id, danceability, energy, loudness, speechiness, acousticness, liveness, valence, tempo, Instrumentalness, key, mode]
+    return song_info
+
+def insertSong(song):
+
+    track_link = song[0]
+    name = song[1]
+    artist = song[2]
+    song_id = song[3]
+    danceability = song[4]
+    energy = song[5]
+    loudness = song[6]
+    speechiness = song[7]
+    acousticness = song[8]
+    liveness = song[9]
+    valence = song[10]
+    tempo = song[11]
+    Instrumentalness = song[12]
+    key = song[13]
+    mode = song[14]
+
+    query = '''
+    SELECT *
+    FROM Song_Data
+    WHERE SongID = \''''+song_id+"\';"
+
+    test = db_ops.execute_one(query)
+
+    if not test:
+        query = "INSERT INTO Song_Data VALUES(\'"+song_id+"\', \'"+name+"\', \'"+artist+"\', "+danceability+", "+energy+","+key+","+loudness+","+mode+","+speechiness+","+acousticness+","+Instrumentalness+","+liveness+","+valence+","+tempo+",\'"+track_link+"\');"
+        db_ops.execute_one(query)
+    else:
+        print("song already in db")
+
+# Start of Main Function begin testing down here
+
+song = GetSongInfo()
+print(song)
+insertSong(song)
