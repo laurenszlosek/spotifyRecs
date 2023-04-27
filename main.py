@@ -153,31 +153,22 @@ def RecommendRandomly()
   #Return Songs
 
 def Menu():
-    menu = """
-    1. Print out options
-    2. Insert Song into Database
-    3. Be Recommended 5 Songs
-    4. Be Recommended 5 Random Songs
-    5. Quit
-    """
-    print(menu)
-    while True:
-        option = input("Choose an option: \n")
-        if(option == "1"):
-            print(menu)
-        elif(option == "2"):
-            song = GetSongInfo()
-            insertSong(song)
-            print("Song has been added to DB")
-        elif(option == "3"):
-            song = GetSongInfo()
-            recommendation = Recommend_Song(song)
-            for i in range(len(recommendation))
-                print(recommendation[i])
-            #Print out all of the artist and name of song to the interface
-                
-        elif(option == "5"):
-            break
+
+    if(option == "1"):
+        song = GetSongInfo()
+        insertSong(song)
+        print("Song has been added to DB")
+    elif(option == "2"):
+        song = GetSongInfo()
+        recommendation = Recommend_Song(song)
+        for i in range(len(recommendation))
+            print(recommendation[i])
+        #Print out all of the artist and name of song to the interface
+    elif(option == "3"):
+        Rand_recommendation = RecommendRandomly()
+        for i in range(len(Rand_recommendation))
+            print(Rand_recommendation[i])
+        #Print out all of the artist and name of song to the interface  
 
 
 Menu()
