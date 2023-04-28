@@ -149,7 +149,12 @@ def RecommendSongs(song):
 #Function that returns a list of 5 random songs to recommend
 def RecommendRandomly()
   #Query for 5 Rand Songs
-  rand = query
+  query = '''
+  SELECT Name, Artist
+  FROM Song_Data
+  ORDER BY random()
+  limit 5; '''
+  rand = db_ops.execute_one(query)
   #Return Songs
 
 def Menu():
