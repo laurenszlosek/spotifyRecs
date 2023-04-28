@@ -154,7 +154,7 @@ def RecommendRandomly()
 
 def Menu():
 
-    if(option == "1"):
+    if(option == "1"): #Option to Insert into DB
         song = GetSongInfo()
         insertSong(song)
         print("Song has been added to DB")
