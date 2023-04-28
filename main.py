@@ -58,11 +58,6 @@ def GetSongInfo():
     song_info = [track_link, name, artist, song_id, danceability, energy, loudness, speechiness, acousticness, liveness, valence, tempo, Instrumentalness, key, mode]
     return song_info
 
-#Function to return the song's name, artist & link given a URI
-def GetSong(trackURI):
-    #Get song info from URI
-    #Return the name & Artist to be printed to user
-
 #Function to take a Song (as a list of info) and insert into the SongData.db file
 def insertSong(song):
 
@@ -168,11 +163,10 @@ def Menu():
         recommendation = Recommend_Song(song)
         for i in range(len(recommendation))
             print(recommendation[i])
-        #Print out all of the artist and name of song to the interface
-    elif(option == "3"):
         Rand_recommendation = RecommendRandomly()
         for i in range(len(Rand_recommendation))
             print(Rand_recommendation[i])
+        insertSong(song)
         #Print out all of the artist and name of song to the interface  
 
 
