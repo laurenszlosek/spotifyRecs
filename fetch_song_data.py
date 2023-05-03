@@ -110,5 +110,4 @@ def insertSong(song):
 # Start of Main Function begin testing down here
 
 song = GetSongInfo()
-print(song)
 insertSong(song)
