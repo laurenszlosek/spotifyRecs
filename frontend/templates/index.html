@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Give Me A Song!</title>
+  </head>
+  <body>
+    <h1>Tired of your current playlist?</h1>
+    <form action="/" method="POST">
+      <label for="user_input">Enter a string:</label>
+      <input type="text" id="user_input" name="user_input" required>
+      <button type="submit">Submit</button>
+    </form>
+    <br>
+    <p>The contents of the file "output.txt" are:</p>
+    <p>{% for line in output_lines %}
+        <p>{{ line }}</p>
+    {% endfor %}</p>
+  </body>
+</html>
