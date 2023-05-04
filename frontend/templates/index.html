@@ -1,19 +1,24 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
+    <meta charset="utf-8">
     <title>Give Me A Song!</title>
   </head>
+
   <body>
-    <h1>Tired of your current playlist?</h1>
+    <div style="vbackground-size: cover; height:480px; padding-top:80px; text-align: center;">
+    <h1 align="center" style="font-family:helvetica">Tired of your current playlist?</h1>
+
     <form action="/" method="POST">
-      <label for="user_input">Enter a string:</label>
       <input type="text" id="user_input" name="user_input" required>
-      <button type="submit">Submit</button>
+      <br><button type="submit">Submit</button>
     </form>
+
     <br>
-    <p>The contents of the file "output.txt" are:</p>
+    <!-- <p>The contents of the file "output.txt" are:</p> -->
     <p>{% for line in output_lines %}
         <p>{{ line }}</p>
     {% endfor %}</p>
+
   </body>
 </html>
