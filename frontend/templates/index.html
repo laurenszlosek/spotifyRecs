@@ -3,14 +3,15 @@
   <head>
     <meta charset="utf-8">
     <title>Give Me A Song!</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
   </head>
 
   <body>
-    <div style="vbackground-size: cover; height:480px; padding-top:80px; text-align: center;">
-    <h1 align="center" style="font-family:helvetica">Tired of your current playlist?</h1>
+    <div class="header"></div>
+    <h1 style="font-family:helvetica">Tired of your current playlist?</h1>
 
     <form action="/" method="POST">
-      <input type="text" id="user_input" name="user_input" required>
+      <input placeholder="Paste a link to your favorite Spotify song here" type="text" id="user_input" name="user_input" required>
       <br><button type="submit">Submit</button>
     </form>
 
