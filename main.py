@@ -180,25 +180,25 @@ class Backend:
         return rand
         #Return Songs
 
-    def Menu(self):
+    # def Menu(self):
 
-        if(option == "1"): #Option to Insert into DB
-            song = GetSongInfo()
-            insertSong(song)
-            print("Song has been added to DB")
-        elif(option == "2"):
-            song = GetSongInfo()
-            recommendation = Recommend_Song(song)
-            for i in range(len(recommendation)):
-                print(recommendation[i])
-            Rand_recommendation = RecommendRandomly()
-            for i in range(len(Rand_recommendation)):
-                print(Rand_recommendation[i])
-            insertSong(song)
-            #Print out all of the artist and name of song to the interface  
+    #     if(option == "1"): #Option to Insert into DB
+    #         song = GetSongInfo()
+    #         insertSong(song)
+    #         print("Song has been added to DB")
+    #     elif(option == "2"):
+    #         song = GetSongInfo()
+    #         recommendation = Recommend_Song(song)
+    #         for i in range(len(recommendation)):
+    #             print(recommendation[i])
+    #         Rand_recommendation = RecommendRandomly()
+    #         for i in range(len(Rand_recommendation)):
+    #             print(Rand_recommendation[i])
+    #         insertSong(song)
+    #         #Print out all of the artist and name of song to the interface  
 
     def ReadSong(self):
-        with open("frontend/user_input.txt", "r") as f:
+        with open("user_input.txt", "r") as f:
             file_content = f.read()
             return file_content
 
@@ -236,7 +236,7 @@ class Backend:
             song = song[1:-1]
             songIds[i] = song
 
-        with open('frontend/output.txt', 'w') as f:
+        with open('output.txt', 'w') as f:
             f.write("Recommended Songs:\n")
             f.write(songIds[0])
             f.write('\n')
