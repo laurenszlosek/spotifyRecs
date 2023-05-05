@@ -19,3 +19,6 @@ input::placeholder {
     opacity: 0.5;
     color: black;
 }
+p {
+    font-family: helvetica;
+}

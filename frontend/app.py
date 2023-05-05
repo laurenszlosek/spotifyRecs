@@ -1,4 +1,5 @@
 # to run- in terminal:
+# cd frontend
 # python3 -m venv venv
 # source venv/bin/activate
 # (only once) pip3 install flask
