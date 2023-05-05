@@ -5,12 +5,14 @@
 # (only once) pip3 install flask
 # flask run
 from flask import Flask, render_template, request
+# from main import whatever
 
 app = Flask(__name__)
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
     output_lines = []
+    # whateever
     if request.method == 'POST':
         user_input = request.form['user_input']
         with open('user_input.txt', 'w') as f:
