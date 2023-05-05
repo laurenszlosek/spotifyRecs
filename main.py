@@ -178,7 +178,7 @@ def WriteOutput(songIds):
     SongList[]
     int i = 0
 
-    for i in 4:
+    for i in 9:
         query = '''
         SELECT Name, Artist
         FROM Song_Data

@@ -1,0 +1,21 @@
+.header {
+    padding: 65px;
+    text-align: center;
+  }
+body {
+    text-align: center;
+    background-image: url("https://raw.githubusercontent.com/laurenszlosek/spotifyRecs/main/frontend/oldFrontend/gradient.png");
+}
+h1 {
+    font-family: helvetica;
+}
+input{
+    width: 40%;
+    padding: 4px 10px;
+    margin: 8px 0;
+    box-sizing: border-box;
+}
+input::placeholder {
+    opacity: 0.5;
+    color: black;
+}
