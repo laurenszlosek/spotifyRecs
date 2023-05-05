@@ -7,7 +7,7 @@ class db_operations():
     def __init__(self, conn_path):
         self.connection = sqlite3.connect(conn_path)
         self.cursor = self.connection.cursor()
-        print("connection made ...")
+        #print("connection made ...")
 
     def single_record(self, query):
         self.cursor.execute(query)
