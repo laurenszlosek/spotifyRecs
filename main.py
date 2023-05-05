@@ -29,7 +29,7 @@ from database import db_operations
 
 # Function to take a share link from the user and return a list for the system to use
 def GetSongInfo():
-    track_link = input("Put your track link in here: ")
+    track_link = ReadSong()
 
     track_URI = track_link.split("/")[-1].split("?")[0] #Also known as the Song ID
 
@@ -169,5 +169,21 @@ def Menu():
         insertSong(song)
         #Print out all of the artist and name of song to the interface  
 
+def ReadSong():
+    with open("frontend/user_input.txt", "r") as f:
+        file_content = f.read()
+        return file_content
+
+def WriteOutput(songIds):
+    SongList[]
+    int i = 0
+
+    for i in 9:
+        query = '''
+        SELECT Name, Artist
+        FROM Song_Data
+        Where SongID = \''''+songIds[0]+'''\';
+        '''
+        SongList[i] = db_ops.execute_one(query)
 
 Menu()
