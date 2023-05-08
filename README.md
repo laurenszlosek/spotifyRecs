@@ -11,7 +11,6 @@ The main contributors / developers for this project are as follow:
 
 > To run locally:
 <br>in terminal:
-<br>cd frontend
 <br>python3 -m venv venv
 <br>source venv/bin/activate
 <br>(only once) pip3 install flask
