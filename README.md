@@ -14,4 +14,8 @@ The main contributors / developers for this project are as follow:
 <br>python3 -m venv venv
 <br>source venv/bin/activate
 <br>(only once) pip3 install flask
+<br> (in virtual enviornment)
+<br> python3 install Pandas
+<br> python3 install Spotipy
+<br> python3 install fastai
 <br>flask run
