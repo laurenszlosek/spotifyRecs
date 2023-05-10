@@ -18,4 +18,5 @@ The main contributors / developers for this project are as follow:
 <br> pip3 install Pandas
 <br> pip3 install Spotipy
 <br> pip3 install fastai
-<br>flask run
+<br> flask run
+<br> open the local host from the terminal
